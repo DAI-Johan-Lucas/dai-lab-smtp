@@ -1,10 +1,7 @@
 package main.java.ch.heig.dai.lab.prankmail.config;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
 /**
  * ConfigReader class allows to read a file line by line
@@ -25,6 +22,9 @@ public class ConfigReader {
 
             while ((line = reader.readLine()) != null)
                 lines.add(line);
+        }
+        catch (IOException e) {
+            throw new IOException("Error reading file " + filePath);
         }
 
         return lines;

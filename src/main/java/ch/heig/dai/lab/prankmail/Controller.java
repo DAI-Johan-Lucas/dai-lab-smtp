@@ -76,31 +76,20 @@ public class Controller {
 
     /**
      * Send the prank emails
-     * @param prankGroups List of email prank groups
-     * @param smtpServerAddress Address of the SMTP server
-     * @param smtpServerPort Port of the SMTP server
+     * @param prankGroups List of prank groups
+     * @param serverAdress SMTP server address
+     * @param serverPort SMTP server port
      * @throws IOException if there is an error sending the emails
      */
-    public void sendPrankEmails(List<Group> prankGroups, String smtpServerAddress, int smtpServerPort) throws IOException {
-        // Connect to the SMTP server
+    public void sendPrankEmails(List<Group> prankGroups, String serverAdress, int serverPort) throws IOException {
         /*
-        SMTPClient client = new SMTPClient(smtpServerAddress, smtpServerPort);
+        // Connect to the SMTP server
+        SMTPClient client = new SMTPClient(serveurAdress, serverPort);
         client.connect();
 
-        // Send the prank emails
+        // For each groups, send every forged messages
         for (Group group : prankGroups) {
-            // Send the prank message to the first email address in the group
-            EmailMessage message = new EmailMessage(
-                    group.getEmailAddresses().get(0),
-                    group.getEmailAddresses().get(0),
-                    group.getPrankMessage()
-            );
-            client.send(message);
-
-            // Send the forged messages to the other email addresses in the group
-            for (String forgedMessage : group.getForgedMessages()) {
-                client.send(forgedMessage);
-            }
+            // TODO
         }
 
         // Disconnect from the SMTP server
