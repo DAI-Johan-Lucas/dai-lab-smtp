@@ -16,17 +16,16 @@ public class EmailMessage {
      * Constructor
      * @param from Sender email address
      * @param to Recipient email address
-     * @param subject Subject of the email
      * @param content Data of the email
      */
-    public EmailMessage(String from, String to, String subject, String content) {
+    public EmailMessage(String from, String to, String content) {
         validateEmail(from);
         validateEmail(to);
 
         this.from = from;
         this.to = to;
-        this.subject = subject;
         this.content = content;
+        this.subject = "No subject";
         this.date = new Date().toString();
     }
 
@@ -34,12 +33,26 @@ public class EmailMessage {
      * Constructor
      * @param from Sender email address
      * @param to Recipient email address
-     * @param subject Subject of the email
      * @param content Data of the email
+     * @param subject Subject of the email
+     */
+    public EmailMessage(String from, String to, String content, String subject) {
+        this(from, to, content);
+        this.date = subject;
+    }
+
+
+
+    /**
+     * Constructor
+     * @param from Sender email address
+     * @param to Recipient email address
+     * @param content Data of the email
+     * @param subject Subject of the email
      * @param date Date of the email
      */
     public EmailMessage(String from, String to, String subject, String content, String date) {
-        this(from, to, subject, content);
+        this(from, to, content, subject);
         this.date = date;
     }
 
@@ -48,18 +61,14 @@ public class EmailMessage {
      * @return Email message
      */
     public String forge() {
-        StringBuilder message = new StringBuilder();
-
-        message.append("From: ").append(getName(from)).append(" <").append(from).append(">\r\n");
-        message.append("To: ").append(" <").append(to).append(">\r\n");
-        message.append("Date: ").append(date).append("\r\n");
-        message.append("Subject: ").append(subject).append("\r\n");
-        message.append("\r\n");
-        message.append(content).append("\r\n");
-        message.append("\r\n");
-        message.append(".\r\n");
-
-        return message.toString();
+        return "From: " + getName(from) + " <" + from + ">\r\n" +
+                "To: " + " <" + to + ">\r\n" +
+                "Date: " + date + "\r\n" +
+                "Subject: " + subject + "\r\n" +
+                "\r\n" +
+                content + "\r\n" +
+                "\r\n" +
+                ".\r\n";
     }
 
     /**
