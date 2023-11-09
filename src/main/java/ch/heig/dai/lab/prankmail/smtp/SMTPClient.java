@@ -1,6 +1,5 @@
 package ch.heig.dai.lab.prankmail.smtp;
 
-import javax.swing.text.html.ImageView;
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
