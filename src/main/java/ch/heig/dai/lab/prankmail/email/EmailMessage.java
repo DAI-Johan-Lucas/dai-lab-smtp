@@ -20,11 +20,11 @@ public class EmailMessage {
      * @param content Data of the email
      */
     public EmailMessage(String from, String to, String subject, String content) {
-        this.from = "From: " + getName(from) + " <" + from + ">";
-        this.to = "To: <" + to + ">";
-        this.subject = "Subject: " + subject;
+        this.from = from;
+        this.to = to;
+        this.subject = subject;
         this.content = content;
-        this.date = "Date: " + new Date().toString();
+        this.date = new Date().toString();
     }
 
     /**
@@ -37,7 +37,7 @@ public class EmailMessage {
      */
     public EmailMessage(String from, String to, String subject, String content, String date) {
         this(from, to, subject, content);
-        this.date = "Date: " + date;
+        this.date = date;
     }
 
     /**
@@ -55,6 +55,17 @@ public class EmailMessage {
      * @return Email message
      */
     public String forge() {
-        return from + "\n" + to + "\n" + date + "\n" + subject + "\n\n" + content + "\n\n.\n";
+        StringBuilder message = new StringBuilder();
+
+        message.append("From: ").append(getName(from)).append(" <").append(from).append(">\r\n");
+        message.append("To: ").append(" <").append(to).append(">\r\n");
+        message.append("Date: ").append(date).append("\r\n");
+        message.append("Subject: ").append(subject).append("\r\n");
+        message.append("\r\n");
+        message.append(content).append("\r\n");
+        message.append("\r\n");
+        message.append(".\r\n");
+
+        return message.toString();
     }
 }
