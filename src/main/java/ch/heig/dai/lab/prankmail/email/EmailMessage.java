@@ -20,6 +20,9 @@ public class EmailMessage {
      * @param content Data of the email
      */
     public EmailMessage(String from, String to, String subject, String content) {
+        validateEmail(from);
+        validateEmail(to);
+
         this.from = from;
         this.to = to;
         this.subject = subject;
@@ -41,16 +44,6 @@ public class EmailMessage {
     }
 
     /**
-     * Get the name of the sender
-     * @param email Email address of the sender
-     * @return Name of the sender
-     */
-    private String getName(String email) {
-        String name = email.split("@")[0];
-        return name.substring(0, 1).toUpperCase() + name.substring(1);
-    }
-
-    /**
      * Forge the email message
      * @return Email message
      */
@@ -67,5 +60,27 @@ public class EmailMessage {
         message.append(".\r\n");
 
         return message.toString();
+    }
+
+    /**
+     * Get the name of the sender
+     * @param email Email address of the sender
+     * @return Name of the sender
+     */
+    private String getName(String email) {
+        String name = email.split("@")[0];
+        return name.substring(0, 1).toUpperCase() + name.substring(1);
+    }
+
+    /**
+     * Validate email address format
+     * @param email Email address to validate
+     * @throws IllegalArgumentException if the email address is not valid
+     */
+    private void validateEmail(String email) {
+        String regex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}$";
+        if (!email.matches(regex)) {
+            throw new IllegalArgumentException("Invalid email address: " + email);
+        }
     }
 }
