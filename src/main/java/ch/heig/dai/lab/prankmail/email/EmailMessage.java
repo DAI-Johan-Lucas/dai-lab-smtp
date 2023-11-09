@@ -1,4 +1,4 @@
-package main.java.ch.heig.dai.lab.prankmail.email;
+package ch.heig.dai.lab.prankmail.email;
 
 import java.util.*;
 
@@ -38,7 +38,7 @@ public class EmailMessage {
      */
     public EmailMessage(String from, String to, String content, String subject) {
         this(from, to, content);
-        this.date = subject;
+        this.subject = subject;
     }
 
 
@@ -54,6 +54,22 @@ public class EmailMessage {
     public EmailMessage(String from, String to, String subject, String content, String date) {
         this(from, to, content, subject);
         this.date = date;
+    }
+
+    /**
+     * Get the sender
+     * @return String
+     */
+    public String getFrom(){
+        return from;
+    }
+
+    /**
+     * Get recipients
+     * @return Email list of recipients
+     */
+    public ArrayList<String> getTo(){
+        return new ArrayList<String>(Arrays.asList(to.split(" ")));
     }
 
     /**

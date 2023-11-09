@@ -1,5 +1,7 @@
 package ch.heig.dai.lab.prankmail.smtp;
 
+import ch.heig.dai.lab.prankmail.email.EmailMessage;
+
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
@@ -7,11 +9,21 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class SMTPClient {
-    private final String SMTPSERVER_ADDRESS = "localhost";
-    private final int SMTPSERVER_PORT = 1025;
+    private String smtpServer_address;
+    private int smtpServer_port;
 
-    public void sendEmail(ArrayList<String> listMail, ArrayList<String> mail){
-        try (Socket socket = new Socket(SMTPSERVER_ADDRESS, SMTPSERVER_PORT);
+    public SMTPClient(){
+        this.smtpServer_address = "localhost";
+        this.smtpServer_port = 1025;
+
+    }
+    SMTPClient(String smtpServer_address, int smtpServer_port){
+        this.smtpServer_address = smtpServer_address;
+        this.smtpServer_port = smtpServer_port;
+
+    }
+    public void sendEmail(EmailMessage email){
+        try (Socket socket = new Socket(smtpServer_address, smtpServer_port);
              BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
              BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8))) {
             String line;
@@ -26,32 +38,29 @@ public class SMTPClient {
                 }
             } while (!line.startsWith("250 "));
 
-            out.write("MAIL FROM:<" + listMail.get(0) + ">\n");
+            out.write("MAIL FROM:<" + email.getFrom() + ">\r\n");
             out.flush();
             if(!(line = in.readLine()).startsWith("250"))throw new RuntimeException(line);
 
-            StringBuilder str = new StringBuilder("RCPT TO:");
-            Iterator<String> iterator = listMail.iterator();
-            iterator.next();
-            while (iterator.hasNext()) {
-                str.append("<").append(iterator.next()).append(">");
+            ArrayList<String> rcpt = email.getTo();
+            for (String s : rcpt) {
+                out.write("RCPT TO:" + s + "\r\n");
+                out.flush();
+                if (!(line = in.readLine()).startsWith("250"))
+                    throw new RuntimeException(line);
             }
-            out.write(str.toString()+"\n");
-            out.flush();
-            if(!(line = in.readLine()).startsWith("250"))throw new RuntimeException(line);
 
-            out.write("DATA\n");
+            out.write("DATA\r\n");
             out.flush();
             if(!(line = in.readLine()).startsWith("354"))throw new RuntimeException(line);
 
-            str = new StringBuilder();
-            iterator = mail.iterator();
-            while (iterator.hasNext()){
-                str.append(iterator.next()+"\n");
-            }
-            out.write(str.toString());
-            out.flush();
-            out.write("\r\n.\r\n");
+//            str = new StringBuilder();
+//            iterator = mail.iterator();
+//            while (iterator.hasNext()){
+//                str.append(iterator.next()+"\n");
+//            }
+//            out.write(str.toString());
+            out.write(email.forge());
             out.flush();
             if(!(line = in.readLine()).startsWith("250"))throw new RuntimeException(line);
 
@@ -62,23 +71,5 @@ public class SMTPClient {
         } catch (Exception e) {
             throw new RuntimeException("Error: "+ e.getMessage());
         }
-    }
-
-    public static void main(String[] args) {
-        ArrayList<String> mail = new ArrayList<>();
-        mail.add("Date: Thu, 21 May 1998 05:33:29 -0700");
-        mail.add("From: John Q. Public <JQP@bar.com>");
-        mail.add("Subject: The Next Meeting of the Board");
-        mail.add("To: Jones@xyz.com");
-        mail.add("Bill.");
-        mail.add("The next meeting of the board of directors will be on Tuesday.");
-        mail.add("John.");
-
-        ArrayList<String> addressMail = new ArrayList<>();
-        addressMail.add("john.doe@gmail.com");
-        addressMail.add("Adam.smith@gmail.com");
-
-        SMTPClient smtpclient = new SMTPClient();
-        smtpclient.sendEmail(addressMail, mail);
     }
 }
