@@ -1,4 +1,4 @@
-package main.java.ch.heig.dai.lab.prankmail.config;
+package ch.heig.dai.lab.prankmail.config;
 
 import java.io.*;
 import java.util.*;

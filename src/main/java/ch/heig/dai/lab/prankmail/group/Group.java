@@ -1,6 +1,6 @@
-package main.java.ch.heig.dai.lab.prankmail.group;
+package ch.heig.dai.lab.prankmail.group;
 
-import main.java.ch.heig.dai.lab.prankmail.email.EmailMessage;
+import ch.heig.dai.lab.prankmail.email.EmailMessage;
 
 import java.util.*;
 
