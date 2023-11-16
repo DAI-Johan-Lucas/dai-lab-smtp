@@ -21,15 +21,14 @@ public class Controller {
         List<String> emails = List.of(
             "john.doe@gmail.com",
             "Adam.smith@gmail.com",
-            "Marika.pok@gmail.com");
+            "Marika.pok@gmail.com",
+            "alex.wilson@example.com",
+            "emily.white@example.com");
 
         List<String> messages = List.of(
-                "John.\n" +
-                        "The next meeting of the board of directors will be on Tuesday.\n" +
-                        "John.\n",
-                "Bill.\n" +
-                        "The next meeting of the board of directors will be on Tuesday.\n" +
-                        "John.\n");
+                "Welcome to the team! You start on sunday.",
+                "The next meeting of the board of directors will be on Tuesday.",
+                "You are fired.");
 
         this.emailAddresses = emails;
         this.messages = messages;
@@ -52,9 +51,10 @@ public class Controller {
      */
     private List<String> getRandomEmails() {
         // Shuffle the list of email addresses and pick 2 to 5 of them
-        Collections.shuffle(emailAddresses);
+        var emails = new ArrayList<>(emailAddresses);
+        Collections.shuffle(emails);
         int groupSize = new Random().nextInt(4) + 2;
-        return emailAddresses.subList(0, groupSize);
+        return emails.subList(0, groupSize);
     }
 
     /**
@@ -62,8 +62,9 @@ public class Controller {
      * @return Random prank message
      */
     private String getRandomMessage() {
-        Collections.shuffle(messages);
-        return messages.get(0);
+        var msg = new ArrayList<>(messages);
+        Collections.shuffle(msg);
+        return msg.get(0);
     }
 
     /**

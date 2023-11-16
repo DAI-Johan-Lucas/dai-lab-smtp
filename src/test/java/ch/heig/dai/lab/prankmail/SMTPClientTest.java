@@ -31,7 +31,7 @@ public class SMTPClientTest {
 //            SMTPClient smtpclient = new SMTPClient();
 //            smtpclient.sendEmail(email, 5);
         }catch (Exception e){
-            fail(e.getMessage());
+            fail(e);
         }
     }
 }
