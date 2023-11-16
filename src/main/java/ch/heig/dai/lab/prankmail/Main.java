@@ -2,10 +2,9 @@ package ch.heig.dai.lab.prankmail;
 
 import java.io.*;
 
-
 public class Main {
     public static void main(String[] args) throws IOException {
-        if (args.length != 3) {
+        if (args.length != 4) {
             System.out.println("Usage: Main <emailFile> <messageFile> <numberOfGroups>");
             return;
         }

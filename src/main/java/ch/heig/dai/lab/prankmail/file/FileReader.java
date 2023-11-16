@@ -1,4 +1,4 @@
-package ch.heig.dai.lab.prankmail.config;
+package ch.heig.dai.lab.prankmail.file;
 
 import java.io.*;
 import java.util.*;
@@ -6,7 +6,7 @@ import java.util.*;
 /**
  * ConfigReader class allows to read a file line by line
  */
-public class ConfigReader {
+public class FileReader {
 
     /**
      * Read a file line by line
@@ -17,7 +17,7 @@ public class ConfigReader {
     public static List<String> readLines(String filePath) throws IOException {
         List<String> lines = new ArrayList<>();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader reader = new BufferedReader(new java.io.FileReader(filePath))) {
             String line;
 
             while ((line = reader.readLine()) != null)

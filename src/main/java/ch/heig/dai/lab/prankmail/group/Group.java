@@ -1,15 +1,25 @@
 package ch.heig.dai.lab.prankmail.group;
 
-import ch.heig.dai.lab.prankmail.email.EmailMessage;
-
 import java.util.*;
 
 /**
- * Group class allows to create a group of email addresses and a forged email message
+ * Group class allows to create a group of email addresses and a forged email message with a chosen prank message
  */
 public class Group {
+
+    /**
+     * List of email addresses in the group, the first one is the sender, the others are the recipients
+     */
     private List<String> emailAddresses;
+
+    /**
+     * String containing the prank message which will be the content of the forged email
+     */
     private String prankMessage;
+
+    /**
+     * List of forged email messages for each recipient
+     */
     private List<String> forgedMessages;
 
     /**

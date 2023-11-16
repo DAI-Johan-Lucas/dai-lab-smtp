@@ -41,8 +41,6 @@ public class EmailMessage {
         this.subject = subject;
     }
 
-
-
     /**
      * Constructor
      * @param from Sender email address
@@ -57,23 +55,7 @@ public class EmailMessage {
     }
 
     /**
-     * Get the sender
-     * @return String
-     */
-    public String getFrom(){
-        return from;
-    }
-
-    /**
-     * Get recipients
-     * @return Email list of recipients
-     */
-    public ArrayList<String> getTo(){
-        return new ArrayList<String>(Arrays.asList(to.split(" ")));
-    }
-
-    /**
-     * Forge the email message
+     * Forge the email message with the given parameters
      * @return Email message
      */
     public String forge() {
@@ -88,7 +70,7 @@ public class EmailMessage {
     }
 
     /**
-     * Get the name of the sender
+     * Get the name of the sender from his email address
      * @param email Email address of the sender
      * @return Name of the sender
      */
@@ -100,12 +82,12 @@ public class EmailMessage {
     /**
      * Validate email address format
      * @param email Email address to validate
-     * @throws IllegalArgumentException if the email address is not valid
+     * @throws IllegalArgumentException If the email address is invalid
      */
     private void validateEmail(String email) {
         String regex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}$";
-        if (!email.matches(regex)) {
+
+        if (!email.matches(regex))
             throw new IllegalArgumentException("Invalid email address: " + email);
-        }
     }
 }
