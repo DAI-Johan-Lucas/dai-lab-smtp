@@ -3,6 +3,7 @@ package ch.heig.dai.lab.prankmail;
 import ch.heig.dai.lab.prankmail.config.ConfigReader;
 import ch.heig.dai.lab.prankmail.email.EmailMessage;
 import ch.heig.dai.lab.prankmail.group.Group;
+import ch.heig.dai.lab.prankmail.smtp.SMTPClient;
 
 import java.io.*;
 import java.util.*;
@@ -13,7 +14,26 @@ import java.util.*;
 public class Controller {
 
     private List<String> emailAddresses;
+
     private List<String> messages;
+
+    public Controller() throws IOException {
+        List<String> emails = List.of(
+            "john.doe@gmail.com",
+            "Adam.smith@gmail.com",
+            "Marika.pok@gmail.com");
+
+        List<String> messages = List.of(
+                "John.\n" +
+                        "The next meeting of the board of directors will be on Tuesday.\n" +
+                        "John.\n",
+                "Bill.\n" +
+                        "The next meeting of the board of directors will be on Tuesday.\n" +
+                        "John.\n");
+
+        this.emailAddresses = emails;
+        this.messages = messages;
+    }
 
     /**
      * Constructor
@@ -77,23 +97,15 @@ public class Controller {
     /**
      * Send the prank emails
      * @param prankGroups List of prank groups
-     * @param serverAdress SMTP server address
+     * @param serverAddress SMTP server address
      * @param serverPort SMTP server port
      * @throws IOException if there is an error sending the emails
      */
-    public void sendPrankEmails(List<Group> prankGroups, String serverAdress, int serverPort) throws IOException {
-        /*
+    public void sendPrankEmails(List<Group> prankGroups, String serverAddress, int serverPort) throws IOException {
         // Connect to the SMTP server
-        SMTPClient client = new SMTPClient(serveurAdress, serverPort);
-        client.connect();
-
-        // For each groups, send every forged messages
-        for (Group group : prankGroups) {
-            // TODO
+        SMTPClient client = new SMTPClient();
+        for(Group group : prankGroups) {
+            client.sendEmail(group);
         }
-
-        // Disconnect from the SMTP server
-        client.disconnect();
-        */
     }
 }

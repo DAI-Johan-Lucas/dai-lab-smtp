@@ -1,0 +1,13 @@
+-------------------------------------------------------------------------------
+Test set: ch.heig.dai.lab.prankmail.SMTPClientTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.082 s <<< FAILURE! - in ch.heig.dai.lab.prankmail.SMTPClientTest
+ch.heig.dai.lab.prankmail.SMTPClientTest.testSendMessage  Time elapsed: 0.061 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Error: Connection refused: connect
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:134)
+	at ch.heig.dai.lab.prankmail.SMTPClientTest.testSendMessage(SMTPClientTest.java:24)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

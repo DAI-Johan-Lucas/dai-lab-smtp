@@ -10,11 +10,10 @@ public class Main {
             return;
         }
 
-        /// TODO je sais pas si le premier arguments = args[0] ou args[1]
-        Controller ctrl = new Controller(args[0], args[1]);
+        Controller ctrl = new Controller(args[1], args[2]);
 
         ctrl.sendPrankEmails(
-                ctrl.generatePrankGroups(Integer.parseInt(args[2])),
+                ctrl.generatePrankGroups(Integer.parseInt(args[3])),
                 "127.0.0.1",
                 25
         );
