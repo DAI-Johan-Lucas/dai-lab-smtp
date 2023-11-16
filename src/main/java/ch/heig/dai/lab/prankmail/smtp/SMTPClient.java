@@ -44,7 +44,7 @@ public class SMTPClient {
 
             ArrayList<String> rcpt = email.getTo();
             for (String s : rcpt) {
-                out.write("RCPT TO:" + s + "\r\n");
+                out.write("RCPT TO:<" + s + ">\r\n");
                 out.flush();
                 if (!(line = in.readLine()).startsWith("250"))
                     throw new RuntimeException(line);
@@ -54,12 +54,6 @@ public class SMTPClient {
             out.flush();
             if(!(line = in.readLine()).startsWith("354"))throw new RuntimeException(line);
 
-//            str = new StringBuilder();
-//            iterator = mail.iterator();
-//            while (iterator.hasNext()){
-//                str.append(iterator.next()+"\n");
-//            }
-//            out.write(str.toString());
             out.write(email.forge());
             out.flush();
             if(!(line = in.readLine()).startsWith("250"))throw new RuntimeException(line);

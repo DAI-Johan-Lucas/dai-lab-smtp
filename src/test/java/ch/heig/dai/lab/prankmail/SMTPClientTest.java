@@ -21,7 +21,7 @@ public class SMTPClientTest {
             SMTPClient smtpclient = new SMTPClient();
             smtpclient.sendEmail(email);
         }catch (Exception e){
-            assertTrue(true);
+            fail(e.getMessage());
         }
     }
 }
