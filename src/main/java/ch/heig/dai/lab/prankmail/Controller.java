@@ -1,8 +1,8 @@
-package main.java.ch.heig.dai.lab.prankmail;
+package ch.heig.dai.lab.prankmail;
 
-import main.java.ch.heig.dai.lab.prankmail.config.ConfigReader;
-import main.java.ch.heig.dai.lab.prankmail.email.EmailMessage;
-import main.java.ch.heig.dai.lab.prankmail.group.Group;
+import ch.heig.dai.lab.prankmail.config.ConfigReader;
+import ch.heig.dai.lab.prankmail.email.EmailMessage;
+import ch.heig.dai.lab.prankmail.group.Group;
 
 import java.io.*;
 import java.util.*;
