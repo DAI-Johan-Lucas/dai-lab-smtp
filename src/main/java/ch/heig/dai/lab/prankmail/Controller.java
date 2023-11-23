@@ -18,17 +18,18 @@ public class Controller {
     /**
      * List of email addresses from the file
      */
-    private final List<String> emailAddresses;
+    private List<String> emailAddresses = new ArrayList<>();
 
     /**
      * List of messages from the file
      */
-    private final List<String> messages;
+    private List<String> messages  = new ArrayList<>();;
 
     /**
-     * Constructor with default values
+     * Constructor with default values for testing purposes
      */
     public Controller() {
+        // Email addresses and messages are hard-coded for testing purposes
         List<String> emails = List.of(
             "john.doe@gmail.com",
             "Adam.smith@gmail.com",
@@ -38,7 +39,7 @@ public class Controller {
 
         List<String> messages = List.of(
                 "Welcome to the team! You start on sunday.",
-                "The next meeting of the board of directors will be on Tuesday.",
+                "Le prochain rendez-vous sera le 1 avril à 14h pour des mathématiques :)",
                 "You are fired.");
 
         this.emailAddresses = emails;
@@ -52,8 +53,16 @@ public class Controller {
      * @throws IOException If there is an error reading the files
      */
     public Controller(String victimsFilePath, String messagesFilePath) throws IOException {
-        this.emailAddresses = FileReader.readLines(victimsFilePath);
-        this.messages = FileReader.readLines(messagesFilePath);
+        try {
+            this.emailAddresses = FileReader.readEmailFile(victimsFilePath);
+            this.messages = FileReader.readLines(messagesFilePath);
+        } catch (IOException e) {
+            System.err.println("Error reading email addresses file: " + e.getMessage());
+            System.exit(1);
+        } catch (IllegalArgumentException e) {
+            System.err.println("Invalid email address detected: " + e.getMessage());
+            System.exit(1);
+        }
     }
 
     /**
@@ -89,22 +98,29 @@ public class Controller {
     public List<Group> generatePrankGroups(int numberOfGroups) {
         List<Group> prankGroups = new ArrayList<>();
 
-        for (int i = 0; i < numberOfGroups; ++i) {
-            // Generate a group with random email addresses and a random prank message
-            Group group = new Group(getRandomEmails(), getRandomMessage());
+        try {
+            if (numberOfGroups < 1 || numberOfGroups > 20)
+                throw new IllegalArgumentException("Number of groups must between 1 and 20.");
 
-            // We forge a message for each victim
-            List<String> forgedMessages = new ArrayList<>();
-            for(int j = 1; j < group.getEmailAddresses().size(); ++j) {
-                EmailMessage message = new EmailMessage(
-                        group.getEmailAddresses().get(0),
-                        group.getEmailAddresses().get(j),
-                        group.getPrankMessage()
-                );
-                forgedMessages.add(message.forge());
+            for (int i = 0; i < numberOfGroups; ++i) {
+                // Generate a group with random email addresses and a random prank message
+                Group group = new Group(getRandomEmails(), getRandomMessage());
+
+                // We forge a message for each victim
+                List<String> forgedMessages = new ArrayList<>();
+                for(int j = 1; j < group.getEmailAddresses().size(); ++j) {
+                    EmailMessage message = new EmailMessage(
+                            group.getEmailAddresses().get(0),
+                            group.getEmailAddresses().get(j),
+                            group.getPrankMessage()
+                    );
+                    forgedMessages.add(message.forge());
+                }
+                group.addForgedMessages(forgedMessages);
+                prankGroups.add(group);
             }
-            group.addForgedMessages(forgedMessages);
-            prankGroups.add(group);
+        } catch (IllegalArgumentException e) {
+            System.err.println("Invalid number of groups: " + e.getMessage());
         }
         return prankGroups;
     }
