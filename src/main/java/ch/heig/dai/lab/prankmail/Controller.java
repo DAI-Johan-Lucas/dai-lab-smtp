@@ -1,9 +1,11 @@
 package ch.heig.dai.lab.prankmail;
 
+import ch.heig.dai.lab.prankmail.email.Message;
 import ch.heig.dai.lab.prankmail.file.FileReader;
 import ch.heig.dai.lab.prankmail.email.EmailMessage;
 import ch.heig.dai.lab.prankmail.group.Group;
 import ch.heig.dai.lab.prankmail.smtp.SMTPClient;
+import com.google.gson.Gson;
 
 import java.io.*;
 import java.util.*;
@@ -23,7 +25,7 @@ public class Controller {
     /**
      * List of messages from the file
      */
-    private final List<String> messages;
+    private final List<Message> messages;
 
     /**
      * Constructor with default values
@@ -36,10 +38,13 @@ public class Controller {
             "alex.wilson@example.com",
             "emily.white@example.com");
 
-        List<String> messages = List.of(
-                "Welcome to the team! You start on sunday.",
-                "The next meeting of the board of directors will be on Tuesday.",
-                "You are fired.");
+        List<Message> messages = List.of(
+                new Message("Welcome","Welcome to the team! You start on sunday."),
+                new Message("Next meeting","The next meeting of the board of " +
+                        "directors will " +
+                        "be " +
+                        "on Tuesday."),
+                new Message("#*$@*#§?!!","You are fired."));
 
         this.emailAddresses = emails;
         this.messages = messages;
@@ -52,8 +57,15 @@ public class Controller {
      * @throws IOException If there is an error reading the files
      */
     public Controller(String victimsFilePath, String messagesFilePath) throws IOException {
-        this.emailAddresses = FileReader.readLines(victimsFilePath);
-        this.messages = FileReader.readLines(messagesFilePath);
+        Gson gson = new Gson();
+
+        //this.emailAddresses = FileReader.readLines(victimsFilePath);
+        //this.messages = FileReader.readLines(messagesFilePath);
+        this.emailAddresses = List.of(gson.fromJson(FileReader.readLines(victimsFilePath),
+                String[].class));
+        this.messages = List.of(gson.fromJson(FileReader.readLines(messagesFilePath),
+                Message[].class));
+
     }
 
     /**
@@ -73,7 +85,7 @@ public class Controller {
      * Get a random prank message
      * @return Random prank message
      */
-    private String getRandomMessage() {
+    private Message getRandomMessage() {
         var msg = new ArrayList<>(messages);
 
         // Shuffle the list of prank message and return one

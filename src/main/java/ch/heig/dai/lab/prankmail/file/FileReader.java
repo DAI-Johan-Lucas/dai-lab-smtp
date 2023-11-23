@@ -14,19 +14,19 @@ public class FileReader {
      * @return a list of lines
      * @throws IOException if the file doesn't exist
      */
-    public static List<String> readLines(String filePath) throws IOException {
-        List<String> lines = new ArrayList<>();
+    public static String readLines(String filePath) throws IOException {
+        StringBuilder lines = new StringBuilder();
 
         try (BufferedReader reader = new BufferedReader(new java.io.FileReader(filePath))) {
             String line;
 
             while ((line = reader.readLine()) != null)
-                lines.add(line);
+                lines.append(line);
         }
         catch (IOException e) {
             throw new IOException("Error reading file " + filePath);
         }
 
-        return lines;
+        return lines.toString();
     }
 }

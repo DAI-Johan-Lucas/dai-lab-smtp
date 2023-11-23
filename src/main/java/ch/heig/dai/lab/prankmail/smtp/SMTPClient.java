@@ -11,9 +11,9 @@ import java.util.ArrayList;
  * SMTPClient class allows to send forged email messages to the SMTP server
  */
 public class SMTPClient {
-    private String serverAddress = "localhost";
-    private int serverPort = 1025;
-    private Group group;
+    private String serverAddress;
+    private int serverPort;
+    private final Group group;
 
     /**
      * Constructor
@@ -48,7 +48,7 @@ public class SMTPClient {
             send(in, out);
 
         } catch (Exception e) {
-            throw new RuntimeException("Error: " + e.getMessage());
+            throw new RuntimeException("Error: " + e);
         }
     }
 
