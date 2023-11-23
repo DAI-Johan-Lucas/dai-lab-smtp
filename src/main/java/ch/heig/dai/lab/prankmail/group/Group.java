@@ -1,5 +1,7 @@
 package ch.heig.dai.lab.prankmail.group;
 
+import ch.heig.dai.lab.prankmail.email.Message;
+
 import java.util.*;
 
 /**
@@ -15,7 +17,7 @@ public class Group {
     /**
      * String containing the prank message which will be the content of the forged email
      */
-    private String prankMessage;
+    private Message prankMessage;
 
     /**
      * List of forged email messages for each recipient
@@ -27,7 +29,7 @@ public class Group {
      * @param emailAddresses List of email addresses in the group
      * @param prankMessage prank message to send
      */
-    public Group(List<String> emailAddresses, String prankMessage) {
+    public Group(List<String> emailAddresses, Message prankMessage) {
         this.emailAddresses = new ArrayList<>(emailAddresses);
         this.prankMessage = prankMessage;
     }
@@ -44,7 +46,7 @@ public class Group {
      * Get the forged email message for the group
      * @return Forged email message
      */
-    public String getPrankMessage() {
+    public Message getPrankMessage() {
         return prankMessage;
     }
 

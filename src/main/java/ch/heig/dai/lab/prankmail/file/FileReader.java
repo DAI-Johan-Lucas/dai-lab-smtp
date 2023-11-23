@@ -1,9 +1,6 @@
 package ch.heig.dai.lab.prankmail.file;
 
-import ch.heig.dai.lab.prankmail.email.EmailMessage;
-
 import java.io.*;
-import java.util.*;
 
 import static ch.heig.dai.lab.prankmail.email.EmailMessage.validateEmail;
 
@@ -18,43 +15,44 @@ public class FileReader {
      * @return a list of lines
      * @throws IOException if the file doesn't exist
      */
-    public static List<String> readLines(String filePath) throws IOException {
-        List<String> lines = new ArrayList<>();
+    public static String readLines(String filePath) throws IOException {
+        StringBuilder lines = new StringBuilder();
 
         try (BufferedReader reader = new BufferedReader(new java.io.FileReader(filePath))) {
             String line;
 
             while ((line = reader.readLine()) != null)
-                lines.add(line);
+                lines.append(line);
         }
         catch (IOException e) {
             throw new IOException("Error reading file " + filePath);
         }
 
-        return lines;
+        return lines.toString();
     }
 
     /**
      * Read a file of email addresses
+     *
      * @param filePath the path of the file to read
      * @return a list of lines of email addresses
      * @throws IOException if the file doesn't exist
      */
-    public static List<String> readEmailFile(String filePath) throws IOException {
-        List<String> emails = new ArrayList<>();
+    public static String readEmailFile(String filePath) throws IOException {
+        StringBuilder emails = new StringBuilder();
 
         try (BufferedReader reader = new BufferedReader(new java.io.FileReader(filePath))) {
             String line;
 
             while ((line = reader.readLine()) != null) {
                 validateEmail(line);
-                emails.add(line);
+                emails.append(line);
             }
         }
         catch (IOException e) {
             throw new IOException("Error reading email file " + filePath);
         }
 
-        return emails;
+        return emails.toString();
     }
 }

@@ -16,16 +16,16 @@ public class EmailMessage {
      * Constructor
      * @param from Sender email address
      * @param to Recipient email address
-     * @param content Data of the email
+     * @param message Data of the email
      */
-    public EmailMessage(String from, String to, String content) {
+    public EmailMessage(String from, String to, Message message) {
         validateEmail(from);
         validateEmail(to);
 
         this.from = from;
         this.to = to;
-        this.content = content;
-        this.subject = "No subject";
+        this.content = message.getContent();
+        this.subject = message.getSubject();
         this.date = new Date().toString();
     }
 
@@ -37,8 +37,7 @@ public class EmailMessage {
      * @param subject Subject of the email
      */
     public EmailMessage(String from, String to, String content, String subject) {
-        this(from, to, content);
-        this.subject = subject;
+        this(from, to, new Message(subject, content));
     }
 
     /**
@@ -62,7 +61,7 @@ public class EmailMessage {
         return "From: " + getName(from) + " <" + from + ">\r\n" +
                 "To: " + " <" + to + ">\r\n" +
                 "Date: " + date + "\r\n" +
-                "Subject: " + subject + "\r\n" +
+                "Subject: =?UTF-8?Q?" + subject + "?=\r\n" +
                 "\r\n" +
                 content + "\r\n" +
                 "\r\n" +
