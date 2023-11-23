@@ -4,8 +4,8 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        if (args.length != 4) {
-            System.out.println("Usage: Main <emailFile> <messageFile> <numberOfGroups>");
+        if (args.length != 6) {
+            System.out.println("Usage: Main <emailFile> <messageFile> <numberOfGroups> <serverAddress> <serverPort>");
             return;
         }
 
@@ -13,8 +13,8 @@ public class Main {
 
         ctrl.sendPrankEmails(
                 ctrl.generatePrankGroups(Integer.parseInt(args[3])),
-                "127.0.0.1",
-                25
+                args[4],
+                Integer.parseInt(args[5])
         );
     }
 }

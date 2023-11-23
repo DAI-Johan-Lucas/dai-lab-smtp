@@ -121,6 +121,7 @@ public class Controller {
             }
         } catch (IllegalArgumentException e) {
             System.err.println("Invalid number of groups: " + e.getMessage());
+            System.exit(1);
         }
         return prankGroups;
     }

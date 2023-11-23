@@ -11,7 +11,7 @@ public class SMTPClientTest {
             Controller ctrl = new Controller();
 
             ctrl.sendPrankEmails(
-                    ctrl.generatePrankGroups(2),
+                    ctrl.generatePrankGroups(6),
                     "localhost",
                     1025
             );
