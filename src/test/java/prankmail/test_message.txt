@@ -1,0 +1,26 @@
+[
+    {
+        subject:"Abonnement gratuit à vie!!!!",
+        content:"Bonjour, Félicitations ! Vous avez été sélectionné pour un abonnement gratuit à vie à notre service exclusif. Cliquez sur le lien ci-dessous pour activer votre abonnement dès maintenant. [Lien d'activation] Cordialement, L'équipe de gestion des abonnements"
+    },
+    {
+        subject:"Voyage tous frais payés!!!!",
+        content:"Bonjour, Vous êtes l'heureux gagnant d'un voyage tous frais payés vers la destination de votre choix ! Réclamez votre prix en cliquant sur le lien ci-dessous. [Lien de réclamation du prix] Félicitations, L'équipe des cadeaux surprises"
+    },
+    {
+        subject:"Procédure de Sécurité",
+        content:"Bonjour, Nous avons détecté des activités suspectes sur votre compte. Pour éviter la suspension, veuillez vérifier votre compte en cliquant sur le lien ci-dessous et en mettant à jour vos informations de sécurité. [Lien de vérification du compte] Merci, L'équipe de sécurité"
+    },
+    {
+        subject:"Colis Mystère????",
+        content:"Bonjour, Félicitations ! Vous avez été sélectionné pour recevoir un colis mystère. Cliquez sur le lien ci-dessous pour planifier la livraison de votre colis. [Lien de confirmation de livraison] Cordialement, L'équipe des surprises spéciales"
+    },
+    {
+        subject:"Accès VIP gratuit",
+        content:"Bonjour, Vous avez été choisi pour recevoir un accès VIP gratuit à notre plateforme exclusive. Cliquez sur le lien ci-dessous pour activer votre accès dès maintenant. [Lien d'activation VIP] Meilleures salutations, L'équipe de privilèges spéciaux"
+    },
+    {
+        subject:"Mise à niveau Exceptionnellement gratuite!!!",
+        content:"Bonjour, Vous avez été sélectionné pour une mise à niveau gratuite de votre compte. Cliquez sur le lien ci-dessous pour bénéficier de cette offre exclusive. [Lien de mise à niveau] Bien à vous, L'équipe d'améliorations"
+    }
+]

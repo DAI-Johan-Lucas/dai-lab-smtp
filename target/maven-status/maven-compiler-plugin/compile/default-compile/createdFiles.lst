@@ -1,6 +1,7 @@
-ch\heig\dai\lab\prankmail\config\ConfigReader.class
-ch\heig\dai\lab\prankmail\Main.class
-ch\heig\dai\lab\prankmail\group\Group.class
-ch\heig\dai\lab\prankmail\email\EmailMessage.class
-ch\heig\dai\lab\prankmail\Controller.class
-ch\heig\dai\lab\prankmail\smtp\SMTPClient.class
+prankmail\email\EmailMessage.class
+prankmail\email\Message.class
+prankmail\Controller.class
+prankmail\smtp\SMTPClient.class
+prankmail\group\Group.class
+prankmail\Main.class
+prankmail\file\FileReader.class

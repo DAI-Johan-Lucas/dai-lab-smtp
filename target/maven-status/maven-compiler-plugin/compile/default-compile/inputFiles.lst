@@ -1,6 +1,7 @@
-C:\Users\lucas\Desktop\Lab-DAI\dai-lab-smtp\src\main\java\ch\heig\dai\lab\prankmail\group\Group.java
-C:\Users\lucas\Desktop\Lab-DAI\dai-lab-smtp\src\main\java\ch\heig\dai\lab\prankmail\Main.java
-C:\Users\lucas\Desktop\Lab-DAI\dai-lab-smtp\src\main\java\ch\heig\dai\lab\prankmail\smtp\SMTPClient.java
-C:\Users\lucas\Desktop\Lab-DAI\dai-lab-smtp\src\main\java\ch\heig\dai\lab\prankmail\config\ConfigReader.java
-C:\Users\lucas\Desktop\Lab-DAI\dai-lab-smtp\src\main\java\ch\heig\dai\lab\prankmail\Controller.java
-C:\Users\lucas\Desktop\Lab-DAI\dai-lab-smtp\src\main\java\ch\heig\dai\lab\prankmail\email\EmailMessage.java
+C:\Users\lucas\Desktop\Lab-DAI\dai-lab-smtp\src\main\java\prankmail\Main.java
+C:\Users\lucas\Desktop\Lab-DAI\dai-lab-smtp\src\main\java\prankmail\file\FileReader.java
+C:\Users\lucas\Desktop\Lab-DAI\dai-lab-smtp\src\main\java\prankmail\group\Group.java
+C:\Users\lucas\Desktop\Lab-DAI\dai-lab-smtp\src\main\java\prankmail\smtp\SMTPClient.java
+C:\Users\lucas\Desktop\Lab-DAI\dai-lab-smtp\src\main\java\prankmail\email\Message.java
+C:\Users\lucas\Desktop\Lab-DAI\dai-lab-smtp\src\main\java\prankmail\Controller.java
+C:\Users\lucas\Desktop\Lab-DAI\dai-lab-smtp\src\main\java\prankmail\email\EmailMessage.java
