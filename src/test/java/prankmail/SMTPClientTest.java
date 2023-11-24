@@ -1,6 +1,5 @@
 package prankmail;
 
-import prankmail.Controller;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,7 +16,7 @@ public class SMTPClientTest {
                     "localhost",
                     1025
             );
-            
+
         }catch (Exception e){
             fail(e);
         }

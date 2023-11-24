@@ -33,19 +33,19 @@ public class Controller {
     public Controller() {
         // Email addresses and messages are hard-coded for testing purposes
         List<String> emails = List.of(
-            "john.doe@gmail.com",
-            "Adam.smith@gmail.com",
-            "Marika.pok@gmail.com",
-            "alex.wilson@example.com",
-            "emily.white@example.com");
+                "john.doe@gmail.com",
+                "Adam.smith@gmail.com",
+                "Marika.pok@gmail.com",
+                "alex.wilson@example.com",
+                "emily.white@example.com");
 
         List<Message> messages = List.of(
-                new Message("Welcome","Welcome to the team! You start on sunday."),
-                new Message("Next meeting","The next meeting of the board of " +
+                new Message("Welcome", "Welcome to the team! You start on sunday."),
+                new Message("Next meeting", "The next meeting of the board of " +
                         "directors will " +
                         "be " +
                         "on Tuesday."),
-                new Message("#*$@*#§?!!","You are fired."));
+                new Message("#*$@*#§?!!", "You are fired."));
 
         this.emailAddresses = emails;
         this.messages = messages;
@@ -53,15 +53,13 @@ public class Controller {
 
     /**
      * Constructor
-     * @param victimsFilePath Path to the file containing email addresses of victims
+     *
+     * @param victimsFilePath  Path to the file containing email addresses of victims
      * @param messagesFilePath Path to the file containing email messages
      * @throws IOException If there is an error reading the files
      */
     public Controller(String victimsFilePath, String messagesFilePath) throws IOException {
         try {
-            //this.emailAddresses = FileReader.readLines(victimsFilePath);
-            //this.messages = FileReader.readLines(messagesFilePath);
-
             Gson gson = new Gson();
             this.emailAddresses = readEmailFile(victimsFilePath);
             this.messages = List.of(gson.fromJson(readJsonFile(messagesFilePath), Message[].class));
@@ -76,6 +74,7 @@ public class Controller {
 
     /**
      * Get a random sublist of email addresses
+     *
      * @return Random sublist of email addresses
      */
     private List<String> getRandomEmails() {
@@ -89,6 +88,7 @@ public class Controller {
 
     /**
      * Get a random prank message
+     *
      * @return Random prank message
      */
     private Message getRandomMessage() {
@@ -101,6 +101,7 @@ public class Controller {
 
     /**
      * Generate and return a list of prank groups
+     *
      * @param numberOfGroups Number of groups to generate
      * @return List of prank groups
      */
@@ -117,7 +118,7 @@ public class Controller {
 
                 // We forge a message for each victim
                 List<String> forgedMessages = new ArrayList<>();
-                for(int j = 1; j < group.getEmailAddresses().size(); ++j) {
+                for (int j = 1; j < group.getEmailAddresses().size(); ++j) {
                     EmailMessage message = new EmailMessage(
                             group.getEmailAddresses().get(0),
                             group.getEmailAddresses().get(j),
@@ -137,22 +138,24 @@ public class Controller {
 
     /**
      * Send the prank emails
-     * @param prankGroups List of prank groups
+     *
+     * @param prankGroups   List of prank groups
      * @param serverAddress SMTP server address
-     * @param serverPort SMTP server port
+     * @param serverPort    SMTP server port
      */
     public void sendPrankEmails(List<Group> prankGroups, String serverAddress, int serverPort) {
         /* Marche pas avec les threads, jsp pourquoi */
 
 //        for (Group group : prankGroups) {
-//            SMTPClient client = new SMTPClient(group);
+//            System.out.println("Prank launched");
+//            SMTPClient client = new SMTPClient(group, serverAddress, serverPort);
 //            Thread clientThread = new Thread(() -> client.run());
 //            clientThread.start();
 //        }
 
-        for(Group group : prankGroups) {
-            System.out.println("Prank launched");
-            SMTPClient client = new SMTPClient(group, serverAddress, serverPort);
+        for (int i = 0; i < prankGroups.size(); ++i) {
+            System.out.println("Prank launched on group #" + (i + 1));
+            SMTPClient client = new SMTPClient(prankGroups.get(i), serverAddress, serverPort);
             client.run();
         }
     }
