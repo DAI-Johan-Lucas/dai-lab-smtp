@@ -94,7 +94,6 @@ public class SMTPClient {
             out.write(forgedMessages.get(i - 1));
             out.flush();
             if (!(line = in.readLine()).startsWith("250")) throw new RuntimeException(line);
-
         }
 
         // Quitting after sending all the forged emails of the group

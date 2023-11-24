@@ -2,6 +2,8 @@ package prankmail.email;
 
 import java.util.*;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 /**
  * EmailMessage class allows to forge an email message with the given parameters
  */
@@ -19,8 +21,7 @@ public class EmailMessage {
      * @param message Data of the email
      */
     public EmailMessage(String from, String to, Message message) {
-        validateEmail(from);
-        validateEmail(to);
+        subject =
 
         this.from = from;
         this.to = to;
@@ -41,19 +42,6 @@ public class EmailMessage {
     }
 
     /**
-     * Constructor
-     * @param from Sender email address
-     * @param to Recipient email address
-     * @param content Data of the email
-     * @param subject Subject of the email
-     * @param date Date of the email
-     */
-    public EmailMessage(String from, String to, String subject, String content, String date) {
-        this(from, to, content, subject);
-        this.date = date;
-    }
-
-    /**
      * Forge the email message with the given parameters
      * @return Email message
      */
@@ -61,11 +49,8 @@ public class EmailMessage {
         return "From: " + getName(from) + " <" + from + ">\r\n" +
                 "To: " + " <" + to + ">\r\n" +
                 "Date: " + date + "\r\n" +
-                "Subject: =?UTF-8?Q?" + subject + "?=\r\n" +
-                "\r\n" +
-                content + "\r\n" +
-                "\r\n" +
-                ".\r\n";
+                "Subject: " + encodeSubject(subject) + "\r\n" +
+                encodeContent(content);
     }
 
     /**
@@ -88,5 +73,13 @@ public class EmailMessage {
 
         if (!email.matches(regex))
             throw new IllegalArgumentException("Invalid email address: " + email);
+    }
+
+    private static String encodeSubject(String subject) {
+        return "=?UTF-8?B?" + Base64.getEncoder().encodeToString(subject.getBytes(UTF_8)) + "?=";
+    }
+
+    private static String encodeContent(String content) {
+        return "Content-Type: text/plain; charset=UTF-8\r\n\r\n" + content + "\r\n\r\n.\r\n";
     }
 }

@@ -1,9 +1,9 @@
 package prankmail.file;
 
-import prankmail.email.EmailMessage;
-
 import java.io.*;
 import java.util.*;
+
+import static prankmail.email.EmailMessage.validateEmail;
 
 /**
  * ConfigReader class allows to read a file line by line
@@ -46,7 +46,7 @@ public class FileReader {
             String line;
 
             while ((line = reader.readLine()) != null) {
-                EmailMessage.validateEmail(line); // Assuming EmailMessage is a class/method to validate emails
+                validateEmail(line);
                 emails.add(line);
             }
         } catch (IOException e) {

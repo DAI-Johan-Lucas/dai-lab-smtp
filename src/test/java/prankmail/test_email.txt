@@ -1,10 +1,5 @@
-bob.smith@example.com
-alice.jones@example.com
-john.doe@example.com
-emily.white@example.com
-david.brown@example.com
-lisa.green@example.com
-alex.wilson@example.com
-sarah.hall@example.com
-mike.taylor@example.com
-jessica.evans@example.com
+alain@testmail1.com
+bastien@testmail2.com
+camille@testmail3.com
+damien@testmail4.com
+emilie@testmail5.com
