@@ -22,7 +22,7 @@ public class Group {
     /**
      * List of forged email messages for each recipient
      */
-    private List<String> forgedMessages;
+    private String forgedMessage;
 
     /**
      * Constructor
@@ -54,15 +54,15 @@ public class Group {
      * Get the forged email messages for the group
      * @return Forged email messages
      */
-    public List<String> getForgedMessages() {
-        return forgedMessages;
+    public String getForgedMessage() {
+        return forgedMessage;
     }
 
     /**
      * Add a forged email message to the group
-     * @param forgedMessages Forged email message
+     * @param forgedMessage Forged email message
      */
-    public void addForgedMessages(List<String> forgedMessages) {
-        this.forgedMessages = forgedMessages;
+    public void addForgedMessages(String forgedMessage) {
+        this.forgedMessage = forgedMessage;
     }
 }

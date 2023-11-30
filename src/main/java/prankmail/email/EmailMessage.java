@@ -47,7 +47,7 @@ public class EmailMessage {
      */
     public String forge() {
         return "From: " + getName(from) + " <" + from + ">\r\n" +
-                "To: " + " <" + to + ">\r\n" +
+                "To: " + to + "\r\n" +
                 "Date: " + date + "\r\n" +
                 "Subject: " + encodeSubject(subject) + "\r\n" +
                 encodeContent(content);

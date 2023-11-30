@@ -74,27 +74,26 @@ public class SMTPClient {
 
         // Get the list of email addresses and forged email messages
         var emails = new ArrayList<>(group.getEmailAddresses());
-        var forgedMessages = new ArrayList<>(group.getForgedMessages());
+        var forgedMessage = group.getForgedMessage();
 
         // Send a forged email for each victim
+        out.write("MAIL FROM:<" + emails.getFirst() + ">\r\n");
+        out.flush();
+        if (!(line = in.readLine()).startsWith("250")) throw new RuntimeException(line);
+
         for (int i = 1; i < emails.size(); ++i) {
-
-            out.write("MAIL FROM:<" + emails.getFirst() + ">\r\n");
-            out.flush();
-            if (!(line = in.readLine()).startsWith("250")) throw new RuntimeException(line);
-
             out.write("RCPT TO:<" + emails.get(i) + ">\r\n");
             out.flush();
-            if (!(line = in.readLine()).startsWith("250")) throw new RuntimeException(line);
-
-            out.write("DATA\r\n");
-            out.flush();
-            if (!(line = in.readLine()).startsWith("354")) throw new RuntimeException(line);
-
-            out.write(forgedMessages.get(i - 1));
-            out.flush();
-            if (!(line = in.readLine()).startsWith("250")) throw new RuntimeException(line);
+            if (!(line = in.readLine()).startsWith("250"))
+                throw new RuntimeException(line);
         }
+        out.write("DATA\r\n");
+        out.flush();
+        if (!(line = in.readLine()).startsWith("354")) throw new RuntimeException(line);
+
+        out.write(forgedMessage);
+        out.flush();
+        if (!(line = in.readLine()).startsWith("250")) throw new RuntimeException(line);
 
         // Quitting after sending all the forged emails of the group
         out.write("QUIT\n");

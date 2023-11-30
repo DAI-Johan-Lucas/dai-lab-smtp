@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 
 import java.io.*;
 import java.util.*;
+import java.util.regex.Pattern;
 
 import static java.util.Collections.shuffle;
 import static prankmail.file.FileReader.*;
@@ -116,17 +117,23 @@ public class Controller {
                 // Generate a group with random email addresses and a random prank message
                 Group group = new Group(getRandomEmails(), getRandomMessage());
 
-                // We forge a message for each victim
-                List<String> forgedMessages = new ArrayList<>();
+                //We forge a message for the group
+                StringBuilder to = new StringBuilder();
                 for (int j = 1; j < group.getEmailAddresses().size(); ++j) {
-                    EmailMessage message = new EmailMessage(
-                            group.getEmailAddresses().get(0),
-                            group.getEmailAddresses().get(j),
-                            group.getPrankMessage()
-                    );
-                    forgedMessages.add(message.forge());
+                    String email = group.getEmailAddresses().get(j);
+                    String[] name = email.split("@")[0].split("\\.");
+                    to.append(Pattern.compile("^.").matcher(name[0]).replaceFirst(m -> m.group().toUpperCase()));
+                    if(name.length>1)to.append(" ").append(Pattern.compile("^.").matcher(name[1]).replaceFirst(m -> m.group().toUpperCase()));
+                    to.append("<").append(email).append(">");
+                    to.append(", ");
                 }
-                group.addForgedMessages(forgedMessages);
+                to.delete(to.length()-2, to.length());
+                EmailMessage message = new EmailMessage(
+                        group.getEmailAddresses().get(0),
+                        to.toString(),
+                        group.getPrankMessage()
+                );
+                group.addForgedMessages(message.forge());
                 prankGroups.add(group);
             }
         } catch (IllegalArgumentException e) {
