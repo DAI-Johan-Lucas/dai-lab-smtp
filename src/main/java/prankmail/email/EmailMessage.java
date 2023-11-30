@@ -25,8 +25,8 @@ public class EmailMessage {
 
         this.from = from;
         this.to = to;
-        this.content = message.getContent();
         this.subject = message.getSubject();
+        this.content = message.getContent();
         this.date = new Date().toString();
     }
 
@@ -34,10 +34,10 @@ public class EmailMessage {
      * Constructor
      * @param from Sender email address
      * @param to Recipient email address
-     * @param content Data of the email
      * @param subject Subject of the email
+     * @param content Content of the email
      */
-    public EmailMessage(String from, String to, String content, String subject) {
+    public EmailMessage(String from, String to, String subject, String content) {
         this(from, to, new Message(subject, content));
     }
 
