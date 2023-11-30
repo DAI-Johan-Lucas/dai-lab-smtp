@@ -11,11 +11,11 @@ intégration avec un serveur SMTP fictif pour des tests sans envoi réel d'e-mai
 
 ### 2. Mise en place d'un serveur SMTP fictif via Docker (maildev) :
 
-##### Lancement du serveur SMTP :
+##### 2.1. Lancement du serveur SMTP :
 
 `docker run -d -p 1080:1080 -p 1025:1025 maildev/maildev`
 
-##### Accès à l'interface MailDev :
+##### 2.2. Accès à l'interface MailDev :
 
 Ouvrez un navigateur et accède à l'interface MailDev via http://localhost:1080.
 
@@ -23,17 +23,17 @@ Utilisez cette interface pour visualiser les e-mails envoyés.
 
 ### 3. Intructions d'utilisation :
 
-##### Configuration des destinataires :
+##### 3.1. Configuration des destinataires :
 
 Éditez le fichier email_address.txt pour ajouter des adresses mails voulues, une par ligne.
 
-##### Configuration des messages de plaisanterie :
+##### 3.2. Configuration des messages de plaisanterie :
 
 Ajoutez vos messages de plaisanterie dans le fichier prank_message.json.
 
 Il contient une liste d'élement avec les attributs "subject" et "content".
 
-##### Exécution de la campagne de plaisanterie :
+##### 3.3. Exécution de la campagne de plaisanterie :
 
 Ouvrez un terminal ou une invite de commande.
 
