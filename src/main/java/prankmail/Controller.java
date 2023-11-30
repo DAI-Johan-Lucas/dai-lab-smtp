@@ -154,9 +154,10 @@ public class Controller {
 //        }
 
         for (int i = 0; i < prankGroups.size(); ++i) {
-            System.out.println("Prank launched on group #" + (i + 1));
+            System.out.print("Prank launched on group #" + (i + 1) + " : ");
             SMTPClient client = new SMTPClient(prankGroups.get(i), serverAddress, serverPort);
             client.run();
+            System.out.println("\u001B[32mSuccess!\u001B[0m");
         }
     }
 }
