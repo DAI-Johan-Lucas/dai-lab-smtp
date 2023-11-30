@@ -47,7 +47,8 @@ public class FileReader {
 
             for (int i = 1; (line = reader.readLine()) != null; i++) {
                 if (!validateEmail(line)) {
-                    System.err.println("Invalid email address at line " + i + " : \"" + line + "\"");
+                    System.out.println("\u001B[33mWARNING : " +
+                            "Invalid email address at line " + i + " : \"" + line + "\"\u001B[0m");
                     continue;
                 }
                 emails.add(line);

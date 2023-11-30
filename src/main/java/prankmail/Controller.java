@@ -157,7 +157,7 @@ public class Controller {
             System.out.print("Prank launched on group #" + (i + 1) + " : ");
             SMTPClient client = new SMTPClient(prankGroups.get(i), serverAddress, serverPort);
             client.run();
-            System.out.println("\u001B[32mSuccess!\u001B[0m");
+            System.out.println("\u001B[92mSuccess!\u001B[0m");
         }
     }
 }

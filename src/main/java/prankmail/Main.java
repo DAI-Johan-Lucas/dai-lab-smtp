@@ -5,7 +5,8 @@ import java.io.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         if (args.length != 5) {
-            System.out.println("Usage: java -jar prankmail.jar <emailFile> <messageFile> <numberOfGroups> <serverAddress> <serverPort>");
+            System.out.println("\u001B[94mUsage: java -jar prankmail.jar <emailFile> <messageFile> " +
+                    "<numberOfGroups> <serverAddress> <serverPort>\u001B[0m");
             return;
         }
 

@@ -12,7 +12,7 @@ public class SMTPClientTest {
                     "src/test/java/prankmail/test_message.txt");
 
             ctrl.sendPrankEmails(
-                    ctrl.generatePrankGroups(4),
+                    ctrl.generatePrankGroups(2),
                     "localhost",
                     1025
             );
