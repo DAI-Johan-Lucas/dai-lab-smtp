@@ -9,7 +9,7 @@ public class SMTPClientTest {
     public void testSendMessage(){
         try {
             Controller ctrl = new Controller("src/test/java/prankmail/test_email.txt",
-                    "src/test/java/prankmail/test_message.txt");
+                    "src/test/java/prankmail/test_message.json");
 
             ctrl.sendPrankEmails(
                     ctrl.generatePrankGroups(2),

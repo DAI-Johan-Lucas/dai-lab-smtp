@@ -29,7 +29,9 @@ Utilisez cette interface pour visualiser les e-mails envoyés.
 
 ##### Configuration des messages de plaisanterie :
 
-Ajoutez vos messages de plaisanterie dans le fichier prank_message.txt, un par ligne.
+Ajoutez vos messages de plaisanterie dans le fichier prank_message.json.
+
+Il contient une liste d'élement avec les attributs "subject" et "content".
 
 ##### Exécution de la campagne de plaisanterie :
 
