@@ -10,6 +10,7 @@ public class Main {
             return;
         }
 
+
         Controller ctrl = new Controller(args[0], args[1]);
 
         ctrl.sendPrankEmails(
