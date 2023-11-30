@@ -75,10 +75,20 @@ public class EmailMessage {
             throw new IllegalArgumentException("Invalid email address: " + email);
     }
 
+    /**
+     * Encode the subject of the email message in UTF-8
+     * @param subject Subject of the email message
+     * @return Encoded subject
+     */
     private static String encodeSubject(String subject) {
         return "=?UTF-8?B?" + Base64.getEncoder().encodeToString(subject.getBytes(UTF_8)) + "?=";
     }
 
+    /**
+     * Encode the content of the email message in UTF-8
+     * @param content Content of the email message
+     * @return Encoded content
+     */
     private static String encodeContent(String content) {
         return "Content-Type: text/plain; charset=UTF-8\r\n\r\n" + content + "\r\n\r\n.\r\n";
     }
