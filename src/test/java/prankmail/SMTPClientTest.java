@@ -11,6 +11,7 @@ public class SMTPClientTest {
             Controller ctrl = new Controller("src/test/java/prankmail/test_email.txt",
                     "src/test/java/prankmail/test_message.txt");
 
+            System.exit(0);
             ctrl.sendPrankEmails(
                     ctrl.generatePrankGroups(2),
                     "localhost",

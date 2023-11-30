@@ -68,11 +68,10 @@ public class EmailMessage {
      * @param email Email address to validate
      * @throws IllegalArgumentException If the email address is invalid
      */
-    public static void validateEmail(String email) {
+    public static boolean validateEmail(String email) {
         String regex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}$";
 
-        if (!email.matches(regex))
-            throw new IllegalArgumentException("Invalid email address: " + email);
+        return email.matches(regex);
     }
 
     /**

@@ -26,7 +26,7 @@ public class FileReader {
                 lines.append(line);
         }
         catch (IOException e) {
-            throw new IOException("Error reading file " + filePath);
+            throw new IOException("\"" + filePath + "\" not found.");
         }
 
         return lines.toString();
@@ -45,12 +45,16 @@ public class FileReader {
         try (BufferedReader reader = new BufferedReader(new java.io.FileReader(filePath))) {
             String line;
 
-            while ((line = reader.readLine()) != null) {
-                validateEmail(line);
+            for (int i = 1; (line = reader.readLine()) != null; i++) {
+                if (!validateEmail(line)) {
+                    System.err.println("Invalid email address at line " + i + " : \"" + line + "\"");
+                    continue;
+                }
                 emails.add(line);
             }
+
         } catch (IOException e) {
-            throw new IOException("Error reading email file " + filePath);
+            throw new IOException("\"" + filePath + "\" not found.");
         }
 
         return emails;
