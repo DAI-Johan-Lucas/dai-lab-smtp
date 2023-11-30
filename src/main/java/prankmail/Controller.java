@@ -64,10 +64,10 @@ public class Controller {
             this.emailAddresses = readEmailFile(victimsFilePath);
             this.messages = List.of(gson.fromJson(readJsonFile(messagesFilePath), Message[].class));
         } catch (IOException e) {
-            System.err.println("Error reading file: " + e.getMessage());
+            System.err.println("Error reading messages: " + e.getMessage());
             System.exit(1);
         } catch (IllegalArgumentException e) {
-            System.err.println("Invalid email address detected: " + e.getMessage());
+            System.err.println("Error reading emails: " + e.getMessage());
             System.exit(1);
         }
     }
