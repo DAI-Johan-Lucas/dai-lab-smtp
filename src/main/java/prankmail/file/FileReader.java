@@ -54,8 +54,8 @@ public class FileReader {
                 emails.add(line);
             }
 
-            if(emails.size() < 5)
-                throw new IllegalArgumentException("There must be at least 5 valid email addresses.");
+            if(emails.size() < 2)
+                throw new IllegalArgumentException("There must be at least 2 valid email addresses.");
 
         } catch (IOException e) {
             throw new IOException("\"" + filePath + "\" not found.");

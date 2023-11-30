@@ -83,7 +83,9 @@ public class Controller {
 
         // Shuffle the list of email addresses and return 2 to 5 of them
         shuffle(emails);
-        int groupSize = new Random().nextInt(4) + 2;
+        int minGroupSize = 2;
+        int maxGroupSize = Math.min(5, emails.size());
+        int groupSize = new Random().nextInt(maxGroupSize - minGroupSize + 1) + minGroupSize;
         return emails.subList(0, groupSize);
     }
 
