@@ -55,16 +55,16 @@ public class ManPage {
                     \u001B[94mExample of message.json file content:\u001B[0m
                     \u001B[33m[
                         {
-                            subject:"<yourSubject1>",
-                            content:"<yourContent1>"
+                            "subject":"<yourSubject1>",
+                            "content":"<yourContent1>"
                         },
                         {
-                            subject:"<yourSubject2>",
-                            content:"<yourContent2>"
+                            "subject":"<yourSubject2>",
+                            "content":"<yourContent2>"
                         },
                         {
-                            subject:"<yourSubject3>",
-                            content:"<yourContent3>"
+                            "subject":"<yourSubject3>",
+                            "content":"<yourContent3>"
                         }
                     ]\u001B[0m
                     """);
