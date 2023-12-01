@@ -1,5 +1,6 @@
 prankmail\email\EmailMessage.class
 prankmail\email\Message.class
+prankmail\manual\ManPage.class
 prankmail\Controller.class
 prankmail\smtp\SMTPClient.class
 prankmail\group\Group.class
