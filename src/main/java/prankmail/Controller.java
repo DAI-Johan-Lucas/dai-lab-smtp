@@ -123,9 +123,7 @@ public class Controller {
                 StringBuilder to = new StringBuilder();
                 for (int j = 1; j < group.getEmailAddresses().size(); ++j) {
                     String email = group.getEmailAddresses().get(j);
-                    String[] name = email.split("@")[0].split("\\.");
-                    to.append(Pattern.compile("^.").matcher(name[0]).replaceFirst(m -> m.group().toUpperCase()));
-                    if(name.length>1)to.append(" ").append(Pattern.compile("^.").matcher(name[1]).replaceFirst(m -> m.group().toUpperCase()));
+                    to.append(EmailMessage.getName(email));
                     to.append("<").append(email).append(">");
                     to.append(", ");
                 }

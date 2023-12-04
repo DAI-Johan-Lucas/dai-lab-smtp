@@ -1,6 +1,7 @@
 package prankmail.email;
 
 import java.util.*;
+import java.util.regex.Pattern;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
@@ -58,9 +59,15 @@ public class EmailMessage {
      * @param email Email address of the sender
      * @return Name of the sender
      */
-    private String getName(String email) {
-        String name = email.split("@")[0];
-        return name.substring(0, 1).toUpperCase() + name.substring(1);
+    public static String getName(String email) {
+        String[] names = email.split("@")[0].split("\\.");
+        StringBuilder nameBuilder = new StringBuilder();
+        for(String name:names){
+            nameBuilder.append(Pattern.compile("^.").matcher(name).replaceFirst(m -> m.group().toUpperCase()));
+            nameBuilder.append(" ");
+        }
+        nameBuilder.deleteCharAt(nameBuilder.length()-1);
+        return nameBuilder.toString();
     }
 
     /**
