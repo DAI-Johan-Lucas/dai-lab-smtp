@@ -49,6 +49,8 @@ Ensuite, pour exécuter Main.java, utilisez la commande java et passez les argum
 
 ### 4. Architecture du projet :
 
+<img src=".\figures\class diagram.png" title="Diagramme de classe" width="600"/>
+
 Notre programme contient 5 classes principales outre la classe Main :
 
 **FileReader :** Lit les fichiers de configuration (adresses e-mail et messages de plaisanterie) et retourne les données lues.
