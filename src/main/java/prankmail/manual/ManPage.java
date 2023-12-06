@@ -28,6 +28,8 @@ public class ManPage {
                 4. The server address must be a valid IP address or a valid domain name.
 
                 5. The server port must be an integer between 1 and 65535.
+                
+                6. The server name must be a valid domain name.
 
                 \u001B[94mUsage: java -jar prankmail-1.0-jar-with-dependencies.jar <emailFile> <messageFile> <numberOfGroups> <serverAddress> <serverPort>\u001B[0m
                 """);

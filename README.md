@@ -60,7 +60,12 @@ Notre programme contient 5 classes principales outre la classe Main :
 **Group :** Représente un groupe d'e-mails avec un message de plaisanterie, la première adresse e-mail du groupe étant
 l'expéditeur et les autres étant les destinataires.
 
-**SMTP Client :** Gère une connexion avec un serveur SMTP fictif pour un groupe donné et envoie le message de plaisanterie.
+**SMTP Client :** Gère une connexion avec un serveur SMTP fictif pour un groupe donné et envoie le message de plaisanterie.  
+Une fois le socket créé, il débutera la communication avec un "EHLO [serveraddress]".
+Ensuite, il enverra un "MAIL FROM: <sender>" pour chaque groupe.
+Puis, il enverra un "RCPT TO: <recipient>" pour chaque destinataire du groupe.
+Enfin, il enverra un "DATA" pour chaque groupe et enverra le message de plaisanterie.
+Il terminera la communication avec un "QUIT".
 
 **Controller :** Gère la logique principale du programme, génère les groupes et lance les campagnes de plaisanterie.
 

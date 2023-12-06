@@ -63,7 +63,7 @@ public class SMTPClient {
         String line;
         if (!(line = in.readLine()).startsWith("220")) throw new RuntimeException(line);
 
-        out.write("EHLO mailDev.com\n");
+        out.write("EHLO " + serverAddress +"\n");
         out.flush();
         do {
             line = in.readLine();
