@@ -8,7 +8,7 @@ import static prankmail.manual.ManPage.*;
  */
 public class Main {
     public static void main(String[] args) throws IOException {
-        if (args.length != 1 && args.length != 6) {
+        if (args.length != 1 && args.length != 5) {
             printInvalidArgumentsMessage();
             return;
         }
@@ -33,8 +33,7 @@ public class Main {
         ctrl.sendPrankEmails(
                 ctrl.generatePrankGroups(Integer.parseInt(args[2])),
                 args[3],
-                Integer.parseInt(args[4]),
-                args[5]
+                Integer.parseInt(args[4])
         );
     }
 

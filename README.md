@@ -37,19 +37,25 @@ Il contient une liste d'élement avec les attributs "subject" et "content".
 
 Ouvrez un terminal ou une invite de commande.
 
-Assurez-vous d'être dans le répertoire contenant le programme Java (Main.java).
+Assurez-vous d'avoir accès au programme java depuis le terminal (prankmail-1.0-jar-with-dependencies.jar).
 
-Utilisez la commande javac pour compiler le code s'il ne l'est pas déjà. Par exemple :
+Utilisez la commande maven pour compiler le code s'il ne l'est pas déjà :
 
-`javac Main.java`
+`mvn clean package`
 
-Ensuite, pour exécuter Main.java, utilisez la commande java et passez les arguments nécessaires :
+Le fichier exécutable .jar se trouvera dans le dossier target.
 
-`java Main <cheminFichierEmail> <cheminFichierBlagues> <nbGroupes>`
+Ensuite, pour exécuter le .jar, utilisez la commande java et passez les arguments nécessaires :
+
+`java -jar <jarFile> <emailFile> <messageFile> <numberOfGroups> <serverAddress> <serverPort>`
+
+Exemple :
+
+`java -jar ./target/prankmail-1.0-jar-with-dependencies.jar ./email_address.txt ./prank_message.json 2 127.0.0.1 1025`
 
 ### 4. Architecture du projet :
 
-<img src=".\figures\class diagram.png" title="Diagramme de classe" width="600"/>
+<img src=".\figures\class_diagram.png" title="Diagramme de classe" width="600"/>
 
 Notre programme contient 5 classes principales outre la classe Main :
 
@@ -70,4 +76,6 @@ Il terminera la communication avec un "QUIT".
 **Controller :** Gère la logique principale du programme, génère les groupes et lance les campagnes de plaisanterie.
 
 **Main :** Point d'entrée du programme, récupère les arguments passés en ligne de commande, crée et lance le Controller.
+
+**ManPage :** Affiche le manuel d'utilisation du programme avec les arguments à passer en ligne de commande.
 

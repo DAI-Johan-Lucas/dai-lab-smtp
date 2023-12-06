@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"prankmail"},{"l":"prankmail.email"},{"l":"prankmail.file"},{"l":"prankmail.group"},{"l":"prankmail.manual"},{"l":"prankmail.smtp"}];updateSearchResults();

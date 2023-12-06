@@ -1,5 +1,8 @@
 package prankmail.manual;
 
+/**
+ * ManPage class provides methods to handle and display information related to the Prankmail application
+ */
 public class ManPage {
 
     /**
